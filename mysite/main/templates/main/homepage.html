@@ -1,0 +1,10 @@
+{% extends "main/header.html" %}
+{% block content %}
+<div class="row" style = "margin-top:-10%">
+          <div class ='col-sm-2'></div>
+          <div class = 'col-sm-8' style = "text-align:center;"><a href="{% url 'staticquiz' %}" class="btn btn-outline-info btn-lg active" role="button" aria-pressed="true" style= "margin-top:50%;">Static Questionnaire</a>
+          <a href="{% url 'adaptivequiz' %}" class="btn btn-outline-info btn-lg active" role="button" aria-pressed="true" style= "margin-top:50%;">Adaptive Questionnaire</a>
+        </div>
+          <div class ='col-sm-2'></div>
+</div>
+{% endblock content %}

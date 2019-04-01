@@ -1,0 +1,572 @@
+{% extends "main/header.html" %}
+<script>
+{% block javascript %}
+var endpoint = '/api/policydata/'
+$.ajax({
+  method: "GET",
+  url: endpoint,
+  success: function(data){
+    gen_male = data.gen_male
+    gen_female = data.gen_female
+    gen_other = data.gen_other
+    race_black = data.race_black
+    race_hisp = data.race_hisp
+    race_white = data.race_white
+    race_other = data.race_other
+    avg_success = data.avg_success
+    g_didi = data.g_didi
+    r_didi = data.r_didi
+    s_didi = data.s_didi
+    setChart()
+  },
+  error: function(error_data){
+      console.log("error")
+      console.log(error_data)
+  }
+});
+function setChart(){
+  TYPE  = 'pie'
+  var A_gen_male = document.getElementById("A_gen_male").getContext('2d');
+  var A_gen_female = document.getElementById("A_gen_female").getContext('2d');
+  var A_gen_other = document.getElementById("A_gen_other").getContext('2d');
+  var A_race_black = document.getElementById("A_race_black").getContext('2d');
+  var A_race_hisp = document.getElementById("A_race_hisp").getContext('2d');
+  var A_race_white = document.getElementById("A_race_white").getContext('2d');
+  var A_race_other = document.getElementById("A_race_other").getContext('2d');
+  var A_average_success = document.getElementById("A_average_success").getContext('2d');
+  var A_g_didi = document.getElementById("A_g_didi").getContext('2d');
+  var A_r_didi = document.getElementById("A_r_didi").getContext('2d');
+  var A_s_didi = document.getElementById("A_s_didi").getContext('2d');
+
+  var B_gen_male = document.getElementById("B_gen_male").getContext('2d');
+  var B_gen_female = document.getElementById("B_gen_female").getContext('2d');
+  var B_gen_other = document.getElementById("B_gen_other").getContext('2d');
+  var B_race_black = document.getElementById("B_race_black").getContext('2d');
+  var B_race_hisp = document.getElementById("B_race_hisp").getContext('2d');
+  var B_race_white = document.getElementById("B_race_white").getContext('2d');
+  var B_race_other = document.getElementById("B_race_other").getContext('2d');
+  var B_average_success = document.getElementById("B_average_success").getContext('2d');
+  var B_g_didi = document.getElementById("B_g_didi").getContext('2d');
+  var B_r_didi = document.getElementById("B_r_didi").getContext('2d');
+  var B_s_didi = document.getElementById("B_s_didi").getContext('2d');
+
+  var myChart = new Chart(A_gen_male, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(gen_male[0]),Math.round(100-gen_male[0])],
+              backgroundColor: [
+                  'rgb(54, 162, 235)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Average Male: '+ Math.round(gen_male[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_gen_female, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(gen_female[0]),Math.round(100-gen_female[0])],
+              backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Average Female: '+ Math.round(gen_female[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_gen_other, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(gen_other[0]),Math.round(100-gen_other[0])],
+              backgroundColor: [
+                  'rgb(153, 102, 255)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Other Gender: '+ Math.round(gen_other[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_race_black, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(race_black[0]),Math.round(100-race_black[0])],
+              backgroundColor: [
+                  'rgb(75, 192, 192)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Black: '+ Math.round(race_black[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_race_hisp, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(race_hisp[0]),Math.round(100-race_hisp[0])],
+              backgroundColor: [
+                  'rgb(255, 205, 86)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Hispanic: '+ Math.round(race_hisp[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_race_white, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(race_white[0]),Math.round(100-race_white[0])],
+              backgroundColor: [
+                  'rgb(139,0,0)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['White: '+ Math.round(race_white[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_race_other, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(race_other[0]),Math.round(100-race_other[0])],
+              backgroundColor: [
+                'rgb(255,160,122)',
+                'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Other Race: '+ Math.round(race_other[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_average_success, {
+      type: 'doughnut',
+      data: {
+          datasets: [{
+              data: [Math.round(avg_success[0]),Math.round(100-avg_success[0])],
+              backgroundColor: [
+                  'rgb(75, 192, 192)',
+                  'rgb(255, 99, 132)',
+              ],
+          }],
+          labels:['Success: '+ Math.round(avg_success[0])+"%",'Failure: '+ Math.round(100-avg_success[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_g_didi, {
+      type: 'bar',
+      data: {
+          datasets: [{
+              label:['Gender DIDI: '+ Math.round(g_didi[0])+"%"],
+              data: [Math.round(g_didi[0])],
+              backgroundColor: [
+                  'rgb(153, 102, 255)',
+              ],
+          }],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+    scales: {
+            yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  steps: 10,
+                  stepValue: 5,
+                  max: 100
+                }
+            }]
+        },
+      }
+  });
+  var myChart = new Chart(A_r_didi, {
+      type: 'bar',
+      data: {
+          datasets: [{
+              label:['Race DIDI: '+ Math.round(r_didi[0])+"%"],
+              data: [Math.round(r_didi[0])],
+              backgroundColor: [
+                  'rgb(255, 205, 86)',
+              ],
+          }],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+    scales: {
+            yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  steps: 10,
+                  stepValue: 5,
+                  max: 100
+                }
+            }]
+        },
+      }
+  });
+  var myChart = new Chart(A_s_didi, {
+      type: 'bar',
+      data: {
+          datasets: [{
+              label:['Sex DIDI: '+ Math.round(s_didi[0])+"%"],
+              data: [Math.round(s_didi[0])],
+              backgroundColor: [
+                  'rgb(255,160,122)',
+              ],
+          }],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+    scales: {
+            yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  steps: 10,
+                  stepValue: 5,
+                  max: 100
+                }
+            }]
+        },
+      }
+  });
+
+  var myChart = new Chart(B_gen_male, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(gen_male[1]),Math.round(100-gen_male[1])],
+              backgroundColor: [
+                'rgb(54, 162, 235)',
+                'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Average Male: '+ Math.round(gen_male[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_gen_female, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(gen_female[1]),Math.round(100-gen_female[1])],
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Average Female: '+ Math.round(gen_female[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_gen_other, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(gen_other[1]),Math.round(100-gen_other[1])],
+              backgroundColor: [
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Average Other: '+ Math.round(gen_other[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_race_black, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(race_black[1]),Math.round(100-race_black[1])],
+              backgroundColor: [
+                'rgb(75, 192, 192)',
+                'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Black: '+ Math.round(race_black[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_race_hisp, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(race_hisp[1]),Math.round(100-race_hisp[1])],
+              backgroundColor: [
+                'rgb(255, 205, 86)',
+                'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Hispanic: '+ Math.round(race_hisp[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_race_white, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(race_white[1]),Math.round(100-race_white[1])],
+              backgroundColor: [
+                'rgb(139,0,0)',
+                'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['White: '+ Math.round(race_white[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_race_other, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(race_other[1]),Math.round(100-race_other[1])],
+              backgroundColor: [
+                  'rgb(255,160,122)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Other Race: '+ Math.round(race_other[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_average_success, {
+      type: 'doughnut',
+      data: {
+          datasets: [{
+              data: [Math.round(avg_success[1]),Math.round(100-avg_success[1])],
+              backgroundColor: [
+                  'rgb(75, 192, 192)',
+                  'rgb(255, 99, 132)',
+              ],
+          }],
+          labels:['Success: '+ Math.round(avg_success[1])+"%",'Failure: '+ Math.round(100-avg_success[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_g_didi, {
+      type: 'bar',
+      data: {
+          datasets: [{
+              label:['Gender DIDI: '+ Math.round(g_didi[1])+"%"],
+              data: [Math.round(g_didi[1])],
+              backgroundColor: [
+                  'rgb(153, 102, 255)',
+              ],
+          }],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+    scales: {
+            yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  steps: 10,
+                  stepValue: 5,
+                  max: 100
+                }
+            }]
+        },
+      }
+  });
+  var myChart = new Chart(B_r_didi, {
+      type: 'bar',
+      data: {
+          datasets: [{
+              label:['Race DIDI: '+ Math.round(r_didi[1])+"%"],
+              data: [Math.round(r_didi[1])],
+              backgroundColor: [
+                  'rgb(255, 205, 86)',
+              ],
+          }],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+    scales: {
+            yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  steps: 10,
+                  stepValue: 5,
+                  max: 100
+                }
+            }]
+        },
+      }
+  });
+  var myChart = new Chart(B_s_didi, {
+      type: 'bar',
+      data: {
+          datasets: [{
+              label:['Sex DIDI: '+ Math.round(s_didi[1])+"%"],
+              data: [Math.round(s_didi[1])],
+              backgroundColor: [
+                  'rgb(255,160,122)',
+              ],
+          }],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+    scales: {
+            yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  steps: 10,
+                  stepValue: 5,
+                  max: 100
+                }
+            }]
+        },
+      }
+  });
+}
+{% endblock %}
+</script>
+{% block content %}
+<div class="row">
+          <div class ='col-sm-6' style = "text-align:center;background-color:#F5F5F5;">
+            <br><br><br>
+            <h3>POLICY A</h3>
+            <br>
+            <h5 class="border border-secondary rounded"><b>Gender</b><h5>
+            <canvas id="A_gen_male"></canvas>
+            <canvas id="A_gen_female"></canvas>
+            <canvas id="A_gen_other"></canvas>
+            <br>
+            <h5 class="border border-secondary rounded"><b>Race</b><h5>
+            <canvas id="A_race_black"></canvas>
+            <canvas id="A_race_hisp"></canvas>
+            <canvas id="A_race_white"></canvas>
+            <canvas id="A_race_other"></canvas>
+            <br>
+            <h5 class="border border-secondary rounded"><b>Average Success Probability</b><h5>
+            <canvas id="A_average_success"></canvas>
+            <br>
+            <h5 class="border border-secondary rounded"><b>DIDI</b><h5>
+            <canvas id="A_g_didi"></canvas>
+            <canvas id="A_r_didi"></canvas>
+            <canvas id="A_s_didi"></canvas>
+          </div>
+          <div class ='col-sm-6' style = "text-align:center; background-color:#FFFF;">
+            <br><br><br>
+            <h3>POLICY B</h3>
+            <br>
+            <h5 class="border border-secondary rounded"><b>Gender</b><h5>
+            <canvas id="B_gen_male"></canvas>
+            <canvas id="B_gen_female"></canvas>
+            <canvas id="B_gen_other"></canvas>
+            <br>
+            <h5 class="border border-secondary rounded"><b>Race</b><h5>
+            <canvas id="B_race_black"></canvas>
+            <canvas id="B_race_hisp"></canvas>
+            <canvas id="B_race_white"></canvas>
+            <canvas id="B_race_other"></canvas>
+            <br>
+            <h5 class="border border-secondary rounded"><b>Average Success Probability</b><h5>
+            <canvas id="B_average_success"></canvas>
+            <br>
+            <h5 class="border border-secondary rounded"><b>DIDI</b><h5>
+            <canvas id="B_g_didi"></canvas>
+            <canvas id="B_r_didi"></canvas>
+            <canvas id="B_s_didi"></canvas>
+        </div>
+</div>
+<br>
+<form action="" method="POST">
+  {% csrf_token %}
+<div class="row">
+  <div class ='col-sm-4' style = "text-align:center;">
+      <button type="submit" name = "left" id = "left" class="btn btn-info btn-lg btn-block" value="left"/>LEFT</button>
+  </div>
+  <div class ='col-sm-4' style = "text-align:center;">
+    <button type="submit" name = "indifferent" id = "indifferent" class="btn btn-info btn-lg btn-block " value="indifferent"/>INDIFFERENT</button>
+    <button type="submit" name = "finish" id = "finish" class="btn btn-warning btn-lg btn-block" style="display:none;" />FINISH</button>
+</div>
+  <div class ='col-sm-4' style = "text-align:center;">
+    <button type="submit" name = "right" id = "right" class="btn btn-info btn-lg btn-block" value="right"/>RIGHT</button>
+  </div>
+</div>
+  </form>
+{% endblock content %}
