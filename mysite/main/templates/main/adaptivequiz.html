@@ -13,6 +13,8 @@ $.ajax({
     race_hisp = data.race_hisp
     race_white = data.race_white
     race_other = data.race_other
+    sex_lgbt = data.sex_lgbt
+    sex_nonlgbt = data.sex_nonlgbt
     avg_success = data.avg_success
     g_didi = data.g_didi
     r_didi = data.r_didi
@@ -33,10 +35,11 @@ function setChart(){
   var A_race_hisp = document.getElementById("A_race_hisp").getContext('2d');
   var A_race_white = document.getElementById("A_race_white").getContext('2d');
   var A_race_other = document.getElementById("A_race_other").getContext('2d');
+  var A_sex_lgbt = document.getElementById("A_sex_lgbt").getContext('2d');
+  var A_sex_nonlgbt = document.getElementById("A_sex_nonlgbt").getContext('2d');
   var A_average_success = document.getElementById("A_average_success").getContext('2d');
-  var A_g_didi = document.getElementById("A_g_didi").getContext('2d');
-  var A_r_didi = document.getElementById("A_r_didi").getContext('2d');
-  var A_s_didi = document.getElementById("A_s_didi").getContext('2d');
+  var A_didi = document.getElementById("A_didi").getContext('2d');
+
 
   var B_gen_male = document.getElementById("B_gen_male").getContext('2d');
   var B_gen_female = document.getElementById("B_gen_female").getContext('2d');
@@ -45,10 +48,10 @@ function setChart(){
   var B_race_hisp = document.getElementById("B_race_hisp").getContext('2d');
   var B_race_white = document.getElementById("B_race_white").getContext('2d');
   var B_race_other = document.getElementById("B_race_other").getContext('2d');
+  var B_sex_lgbt = document.getElementById("B_sex_lgbt").getContext('2d');
+  var B_sex_nonlgbt = document.getElementById("B_sex_nonlgbt").getContext('2d');
   var B_average_success = document.getElementById("B_average_success").getContext('2d');
-  var B_g_didi = document.getElementById("B_g_didi").getContext('2d');
-  var B_r_didi = document.getElementById("B_r_didi").getContext('2d');
-  var B_s_didi = document.getElementById("B_s_didi").getContext('2d');
+  var B_didi = document.getElementById("B_didi").getContext('2d');
 
   var myChart = new Chart(A_gen_male, {
       type: TYPE,
@@ -60,7 +63,7 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Male: '+ Math.round(gen_male[0])+"%"],
+          labels:['Male: '+ Math.round(gen_male[0])+"%"],
       },
       options: {
         tooltips: {
@@ -78,7 +81,7 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Female: '+ Math.round(gen_female[0])+"%"],
+          labels:['Female: '+ Math.round(gen_female[0])+"%"],
       },
       options: {
         tooltips: {
@@ -96,7 +99,7 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Other Gender: '+ Math.round(gen_other[0])+"%"],
+          labels:['Other: '+ Math.round(gen_other[0])+"%"],
       },
       options: {
         tooltips: {
@@ -176,6 +179,42 @@ function setChart(){
     },
       }
   });
+  var myChart = new Chart(A_sex_lgbt, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(sex_lgbt[0]),Math.round(100-sex_lgbt[0])],
+              backgroundColor: [
+                  'rgb(153, 102, 255)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['LGBT: '+ Math.round(sex_lgbt[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_sex_nonlgbt, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(sex_nonlgbt[0]),Math.round(100-sex_nonlgbt[0])],
+              backgroundColor: [
+                  'rgb(75, 192, 192)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Non LGBT: '+ Math.round(sex_nonlgbt[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
   var myChart = new Chart(A_average_success, {
       type: 'doughnut',
       data: {
@@ -194,74 +233,22 @@ function setChart(){
     },
       }
   });
-  var myChart = new Chart(A_g_didi, {
+  var myChart = new Chart(A_didi, {
       type: 'bar',
       data: {
+          labels:['Gender DIDI: '+ Math.round(g_didi[0])+"%",'Race DIDI: '+ Math.round(r_didi[0])+"%",'Sex DIDI: '+ Math.round(s_didi[0])+"%"],
           datasets: [{
-              label:['Gender DIDI: '+ Math.round(g_didi[0])+"%"],
-              data: [Math.round(g_didi[0])],
+              data: [Math.round(g_didi[0]),Math.round(r_didi[0]),Math.round(s_didi[0])],
               backgroundColor: [
-                  'rgb(153, 102, 255)',
+                'rgb(153, 102, 255)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 159, 64)',
               ],
           }],
       },
       options: {
-        tooltips: {
-         enabled: false
-    },
-    scales: {
-            yAxes: [{
-                ticks: {
-                  beginAtZero: true,
-                  steps: 10,
-                  stepValue: 5,
-                  max: 100
-                }
-            }]
-        },
-      }
-  });
-  var myChart = new Chart(A_r_didi, {
-      type: 'bar',
-      data: {
-          datasets: [{
-              label:['Race DIDI: '+ Math.round(r_didi[0])+"%"],
-              data: [Math.round(r_didi[0])],
-              backgroundColor: [
-                  'rgb(255, 205, 86)',
-              ],
-          }],
-      },
-      options: {
-        tooltips: {
-         enabled: false
-    },
-    scales: {
-            yAxes: [{
-                ticks: {
-                  beginAtZero: true,
-                  steps: 10,
-                  stepValue: 5,
-                  max: 100
-                }
-            }]
-        },
-      }
-  });
-  var myChart = new Chart(A_s_didi, {
-      type: 'bar',
-      data: {
-          datasets: [{
-              label:['Sex DIDI: '+ Math.round(s_didi[0])+"%"],
-              data: [Math.round(s_didi[0])],
-              backgroundColor: [
-                  'rgb(255,160,122)',
-              ],
-          }],
-      },
-      options: {
-        tooltips: {
-         enabled: false
+        legend: {
+        display: false
     },
     scales: {
             yAxes: [{
@@ -286,7 +273,7 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Male: '+ Math.round(gen_male[1])+"%"],
+          labels:['Male: '+ Math.round(gen_male[1])+"%"],
       },
       options: {
         tooltips: {
@@ -304,7 +291,7 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Female: '+ Math.round(gen_female[1])+"%"],
+          labels:['Female: '+ Math.round(gen_female[1])+"%"],
       },
       options: {
         tooltips: {
@@ -322,7 +309,7 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Other: '+ Math.round(gen_other[1])+"%"],
+          labels:['Other: '+ Math.round(gen_other[1])+"%"],
       },
       options: {
         tooltips: {
@@ -402,6 +389,42 @@ function setChart(){
     },
       }
   });
+  var myChart = new Chart(B_sex_lgbt, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(sex_lgbt[1]),Math.round(100-sex_lgbt[1])],
+              backgroundColor: [
+                  'rgb(153, 102, 255)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['LGBT: '+ Math.round(sex_lgbt[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_sex_nonlgbt, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(sex_nonlgbt[1]),Math.round(100-sex_nonlgbt[1])],
+              backgroundColor: [
+                  'rgb(75, 192, 192)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Non LGBT: '+ Math.round(sex_nonlgbt[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
   var myChart = new Chart(B_average_success, {
       type: 'doughnut',
       data: {
@@ -420,75 +443,23 @@ function setChart(){
     },
       }
   });
-  var myChart = new Chart(B_g_didi, {
+  var myChart = new Chart(B_didi, {
       type: 'bar',
       data: {
+          labels:['Gender DIDI: '+ Math.round(g_didi[1])+"%",'Race DIDI: '+ Math.round(r_didi[1])+"%",'Sex DIDI: '+ Math.round(s_didi[1])+"%"],
           datasets: [{
-              label:['Gender DIDI: '+ Math.round(g_didi[1])+"%"],
-              data: [Math.round(g_didi[1])],
+              data: [Math.round(g_didi[1]),Math.round(r_didi[1]),Math.round(s_didi[1])],
               backgroundColor: [
                   'rgb(153, 102, 255)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 159, 64)',
               ],
           }],
       },
       options: {
-        tooltips: {
-         enabled: false
-    },
-    scales: {
-            yAxes: [{
-                ticks: {
-                  beginAtZero: true,
-                  steps: 10,
-                  stepValue: 5,
-                  max: 100
-                }
-            }]
+        legend: {
+        display: false
         },
-      }
-  });
-  var myChart = new Chart(B_r_didi, {
-      type: 'bar',
-      data: {
-          datasets: [{
-              label:['Race DIDI: '+ Math.round(r_didi[1])+"%"],
-              data: [Math.round(r_didi[1])],
-              backgroundColor: [
-                  'rgb(255, 205, 86)',
-              ],
-          }],
-      },
-      options: {
-        tooltips: {
-         enabled: false
-    },
-    scales: {
-            yAxes: [{
-                ticks: {
-                  beginAtZero: true,
-                  steps: 10,
-                  stepValue: 5,
-                  max: 100
-                }
-            }]
-        },
-      }
-  });
-  var myChart = new Chart(B_s_didi, {
-      type: 'bar',
-      data: {
-          datasets: [{
-              label:['Sex DIDI: '+ Math.round(s_didi[1])+"%"],
-              data: [Math.round(s_didi[1])],
-              backgroundColor: [
-                  'rgb(255,160,122)',
-              ],
-          }],
-      },
-      options: {
-        tooltips: {
-         enabled: false
-    },
     scales: {
             yAxes: [{
                 ticks: {
@@ -507,52 +478,94 @@ function setChart(){
 {% block content %}
 <div class="row">
           <div class ='col-sm-6' style = "text-align:center;background-color:#F5F5F5;">
-            <br><br><br>
-            <h3>POLICY A</h3>
             <br>
-            <h5 class="border border-secondary rounded"><b>Gender</b><h5>
+            <h3>POLICY A</h3>
+          </div>
+          <div class ='col-sm-6' style = "text-align:center; background-color:#FFFF;">
+            <br>
+            <h3>POLICY B</h3>
+        </div>
+</div>
+<div class="row">
+<div style = "text-align:center;background-color:#0498a0;opacity:0.7;height:40px;width:100%;"><h3 style= "color:white;">CHANCE OF EXITING HOMELESSNESS</h3></div>
+<div style = "text-align:center;background-color:#FFD700;opacity:0.8;height:30px;width:100%"><h4>SUCCESS BY GENDER</h4></div>
+</div>
+<div class="row">
+          <div class ='col-sm-6' style = "text-align:center;background-color:#F5F5F5;">
             <canvas id="A_gen_male"></canvas>
             <canvas id="A_gen_female"></canvas>
             <canvas id="A_gen_other"></canvas>
             <br>
-            <h5 class="border border-secondary rounded"><b>Race</b><h5>
+          </div>
+          <div class ='col-sm-6' style = "text-align:center; background-color:#FFFF;">
+            <canvas id="B_gen_male"></canvas>
+            <canvas id="B_gen_female"></canvas>
+            <canvas id="B_gen_other"></canvas>
+            <br>
+        </div>
+</div>
+<div class="row">
+<div style = "text-align:center;background-color:#FFD700;opacity:0.8;height:30px;width:100%"><h4>SUCCESS BY RACE</h4></div>
+</div>
+<div class="row">
+          <div class ='col-sm-6' style = "text-align:center;background-color:#F5F5F5;">
             <canvas id="A_race_black"></canvas>
             <canvas id="A_race_hisp"></canvas>
             <canvas id="A_race_white"></canvas>
             <canvas id="A_race_other"></canvas>
             <br>
-            <h5 class="border border-secondary rounded"><b>Average Success Probability</b><h5>
-            <canvas id="A_average_success"></canvas>
-            <br>
-            <h5 class="border border-secondary rounded"><b>DIDI</b><h5>
-            <canvas id="A_g_didi"></canvas>
-            <canvas id="A_r_didi"></canvas>
-            <canvas id="A_s_didi"></canvas>
           </div>
           <div class ='col-sm-6' style = "text-align:center; background-color:#FFFF;">
-            <br><br><br>
-            <h3>POLICY B</h3>
-            <br>
-            <h5 class="border border-secondary rounded"><b>Gender</b><h5>
-            <canvas id="B_gen_male"></canvas>
-            <canvas id="B_gen_female"></canvas>
-            <canvas id="B_gen_other"></canvas>
-            <br>
-            <h5 class="border border-secondary rounded"><b>Race</b><h5>
             <canvas id="B_race_black"></canvas>
             <canvas id="B_race_hisp"></canvas>
             <canvas id="B_race_white"></canvas>
             <canvas id="B_race_other"></canvas>
             <br>
-            <h5 class="border border-secondary rounded"><b>Average Success Probability</b><h5>
-            <canvas id="B_average_success"></canvas>
-            <br>
-            <h5 class="border border-secondary rounded"><b>DIDI</b><h5>
-            <canvas id="B_g_didi"></canvas>
-            <canvas id="B_r_didi"></canvas>
-            <canvas id="B_s_didi"></canvas>
         </div>
 </div>
+<div class="row">
+<div style = "text-align:center;background-color:#FFD700;opacity:0.8;height:30px;width:100%"><h4>SUCCESS BY SEXUAL ORIENTATION</h4></div>
+</div>
+<div class="row">
+          <div class ='col-sm-6' style = "text-align:center;background-color:#F5F5F5;">
+            <canvas id="A_sex_lgbt"></canvas>
+            <canvas id="A_sex_nonlgbt"></canvas>
+            <br>
+          </div>
+          <div class ='col-sm-6' style = "text-align:center; background-color:#FFFF;">
+            <canvas id="B_sex_lgbt"></canvas>
+            <canvas id="B_sex_nonlgbt"></canvas>
+            <br>
+        </div>
+</div>
+<div class="row">
+<div style = "text-align:center;background-color:#FFD700;opacity:0.8;height:30px;width:100%"><h4>OVERALL SUCCESS</h4></div>
+</div>
+<div class="row">
+          <div class ='col-sm-6' style = "text-align:center;background-color:#F5F5F5;">
+          <canvas id="A_average_success"></canvas>
+          <br>
+          </div>
+          <div class ='col-sm-6' style = "text-align:center; background-color:#FFFF;">
+          <canvas id="B_average_success"></canvas>
+          <br>
+        </div>
+</div>
+<div class="row">
+<div style = "text-align:center;background-color:#0498a0;opacity:0.7;height:40px;width:100%;"><h3 style= "color:white;">DISCRIMINATION INDEX</h3></div>
+<div style = "text-align:center;background-color:#FFD700;opacity:0.8;height:30px;width:100%"></div>
+</div>
+<div class="row">
+          <div class ='col-sm-6' style = "text-align:center;background-color:#F5F5F5;">
+          <br>
+          <canvas id="A_didi"></canvas>
+          </div>
+          <div class ='col-sm-6' style = "text-align:center; background-color:#FFFF;">
+            <br>
+            <canvas id="B_didi"></canvas>
+        </div>
+</div>
+
 <br>
 <form action="" method="POST">
   {% csrf_token %}

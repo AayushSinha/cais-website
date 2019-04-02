@@ -106,6 +106,8 @@ class PolicyData(APIView):
             "race_hisp":[random.uniform(0,100),random.uniform(0,100)],
             "race_white":[random.uniform(0,100),random.uniform(0,100)],
             "race_other":[random.uniform(0,100),random.uniform(0,100)],
+            "sex_lgbt":[random.uniform(0,100),random.uniform(0,100)],
+            "sex_nonlgbt":[random.uniform(0,100),random.uniform(0,100)],
             "avg_success":[random.uniform(0,100),random.uniform(0,100)],
             "g_didi":[random.uniform(0,100),random.uniform(0,100)],
             "r_didi":[random.uniform(0,100),random.uniform(0,100)],
