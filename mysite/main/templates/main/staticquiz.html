@@ -13,6 +13,8 @@ $.ajax({
     race_hisp = data.race_hisp
     race_white = data.race_white
     race_other = data.race_other
+    sex_lgbt = data.sex_lgbt
+    sex_nonlgbt = data.sex_nonlgbt
     avg_success = data.avg_success
     g_didi = data.g_didi
     r_didi = data.r_didi
@@ -33,6 +35,8 @@ function setChart(){
   var A_race_hisp = document.getElementById("A_race_hisp").getContext('2d');
   var A_race_white = document.getElementById("A_race_white").getContext('2d');
   var A_race_other = document.getElementById("A_race_other").getContext('2d');
+  var A_sex_lgbt = document.getElementById("A_sex_lgbt").getContext('2d');
+  var A_sex_nonlgbt = document.getElementById("A_sex_nonlgbt").getContext('2d');
   var A_average_success = document.getElementById("A_average_success").getContext('2d');
   var A_didi = document.getElementById("A_didi").getContext('2d');
 
@@ -43,6 +47,8 @@ function setChart(){
   var B_race_hisp = document.getElementById("B_race_hisp").getContext('2d');
   var B_race_white = document.getElementById("B_race_white").getContext('2d');
   var B_race_other = document.getElementById("B_race_other").getContext('2d');
+  var B_sex_lgbt = document.getElementById("B_sex_lgbt").getContext('2d');
+  var B_sex_nonlgbt = document.getElementById("B_sex_nonlgbt").getContext('2d');
   var B_average_success = document.getElementById("B_average_success").getContext('2d');
   var B_didi = document.getElementById("B_didi").getContext('2d');
 
@@ -56,7 +62,7 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Male: '+ Math.round(gen_male[0])+"%"],
+          labels:['Male: '+ Math.round(gen_male[0])+"%"],
       },
       options: {
         tooltips: {
@@ -74,7 +80,7 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Female: '+ Math.round(gen_female[0])+"%"],
+          labels:['Female: '+ Math.round(gen_female[0])+"%"],
       },
       options: {
         tooltips: {
@@ -92,7 +98,7 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Other Gender: '+ Math.round(gen_other[0])+"%"],
+          labels:['Other: '+ Math.round(gen_other[0])+"%"],
       },
       options: {
         tooltips: {
@@ -172,6 +178,42 @@ function setChart(){
     },
       }
   });
+  var myChart = new Chart(A_sex_lgbt, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(sex_lgbt[0]),Math.round(100-sex_lgbt[0])],
+              backgroundColor: [
+                  'rgb(153, 102, 255)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['LGBT: '+ Math.round(sex_lgbt[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(A_sex_nonlgbt, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(sex_nonlgbt[0]),Math.round(100-sex_nonlgbt[0])],
+              backgroundColor: [
+                  'rgb(75, 192, 192)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Non LGBT: '+ Math.round(sex_nonlgbt[0])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
   var myChart = new Chart(A_average_success, {
       type: 'doughnut',
       data: {
@@ -231,7 +273,7 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Male: '+ Math.round(gen_male[1])+"%"],
+          labels:['Male: '+ Math.round(gen_male[1])+"%"],
       },
       options: {
         tooltips: {
@@ -249,7 +291,7 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Female: '+ Math.round(gen_female[1])+"%"],
+          labels:['Female: '+ Math.round(gen_female[1])+"%"],
       },
       options: {
         tooltips: {
@@ -267,7 +309,7 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Average Other: '+ Math.round(gen_other[1])+"%"],
+          labels:['Other: '+ Math.round(gen_other[1])+"%"],
       },
       options: {
         tooltips: {
@@ -340,6 +382,42 @@ function setChart(){
               ],
           }],
           labels:['Other: '+ Math.round(race_other[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_sex_lgbt, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(sex_lgbt[1]),Math.round(100-sex_lgbt[1])],
+              backgroundColor: [
+                  'rgb(153, 102, 255)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['LGBT: '+ Math.round(sex_lgbt[1])+"%"],
+      },
+      options: {
+        tooltips: {
+         enabled: false
+    },
+      }
+  });
+  var myChart = new Chart(B_sex_nonlgbt, {
+      type: TYPE,
+      data: {
+          datasets: [{
+              data: [Math.round(sex_nonlgbt[1]),Math.round(100-sex_nonlgbt[1])],
+              backgroundColor: [
+                  'rgb(75, 192, 192)',
+                  'rgb(201, 203, 207)',
+              ],
+          }],
+          labels:['Non LGBT: '+ Math.round(sex_nonlgbt[1])+"%"],
       },
       options: {
         tooltips: {
@@ -468,6 +546,27 @@ function setChart(){
         </div>
         <div style="width: 50%;">
             <canvas id="B_race_other"></canvas>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div style = "text-align:center;background-color:#FFD700;opacity:0.8;height:30px;width:100%"><h4>SUCCESS BY SEXUAL ORIENTATION</h4></div>
+</div>
+<div class="row">
+    <div class ="col-sm-6" style = "text-align:center;background-color:#F5F5F5;display: flex;flex-wrap: wrap;padding-bottom: 2rem;padding-top: 2rem;">
+        <div style="width: 50%;">
+            <canvas id="A_sex_lgbt"></canvas>
+        </div>
+        <div style="width: 50%;">
+            <canvas id="A_sex_nonlgbt"></canvas>
+        </div>
+    </div>
+    <div class ="col-sm-6" style = "text-align:center;background-color:#FFF;display: flex;flex-wrap: wrap;padding-top: 2rem;padding-bottom: 2rem;">
+        <div style="width: 50%;">
+            <canvas id="B_sex_lgbt"></canvas>
+        </div>
+        <div style="width: 50%;">
+            <canvas id="B_sex_nonlgbt"></canvas>
         </div>
     </div>
 </div>
