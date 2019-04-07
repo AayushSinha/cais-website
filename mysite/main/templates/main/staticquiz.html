@@ -52,7 +52,7 @@ function setChart(){
   var B_average_success = document.getElementById("B_average_success").getContext('2d');
   var B_didi = document.getElementById("B_didi").getContext('2d');
 
-  var myChart = new Chart(A_gen_male, {
+ var myChart = new Chart(A_gen_male, {
       type: TYPE,
       data: {
           datasets: [{
@@ -62,20 +62,30 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Male: '+ Math.round(gen_male[0])+"%"],
-        //    labels:['Success: '+ Math.round(gen_male[0])+"%",'Failure: '+ Math.round(100-gen_male[0])+"%"],
+        //   labels:['Male: '+ Math.round(gen_male[0])+"%"],
+           labels:['Success: '+ Math.round(gen_male[0])+"%",'Failure: '+ Math.round(100-gen_male[0])+"%"],
         // labels: ['Male']
     
       },
-
+    //   label: 'Male',
       options: {
         tooltips: {
          enabled: false
          
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
 
+
+            }
+        }
       }
   });
+
   var myChart = new Chart(A_gen_female, {
       type: TYPE,
       data: {
@@ -86,8 +96,8 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-         labels:['Female: '+ Math.round(gen_female[0])+"%"],
-        //   labels:['Success: '+ Math.round(gen_female[0])+"%",'Failure: '+ Math.round(100-gen_female[0])+"%"],
+        //  labels:['Female: '+ Math.round(gen_female[0])+"%"],
+          labels:['Success: '+ Math.round(gen_female[0])+"%",'Failure: '+ Math.round(100-gen_female[0])+"%"],
         //   labels:['FEMALE:'],
 
       },
@@ -95,7 +105,21 @@ function setChart(){
         tooltips: {
          enabled: false
     },
+
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
+
+
+      
   });
   var myChart = new Chart(A_gen_other, {
       type: TYPE,
@@ -107,13 +131,26 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Other: '+ Math.round(gen_other[0])+"%"],
+        //   labels:['Other: '+ Math.round(gen_other[0])+"%"],
+          labels:['Success: '+ Math.round(gen_other[0])+"%",'Failure: '+ Math.round(100-gen_other[0])+"%"],
+       
       },
       options: {
         tooltips: {
          enabled: false
     },
-      }
+     
+      legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
+    },
   });
   var myChart = new Chart(A_race_black, {
       type: TYPE,
@@ -125,12 +162,24 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Black: '+ Math.round(race_black[0])+"%"],
+        //   labels:['Black: '+ Math.round(race_black[0])+"%"],
+          labels:['Success: '+ Math.round(race_black[0])+"%",'Failure: '+ Math.round(100-race_black[0])+"%"],
+       
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(A_race_hisp, {
@@ -143,12 +192,25 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Hispanic: '+ Math.round(race_hisp[0])+"%"],
+        //   labels:['Hispanic: '+ Math.round(race_hisp[0])+"%"],
+          labels:['Success: '+ Math.round(race_hisp[0])+"%",'Failure: '+ Math.round(100-race_hisp[0])+"%"],
+       
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
+    
       }
   });
   var myChart = new Chart(A_race_white, {
@@ -161,12 +223,24 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['White: '+ Math.round(race_white[0])+"%"],
+        //   labels:['White: '+ Math.round(race_white[0])+"%"],
+          labels:['Success: '+ Math.round(race_white[0])+"%",'Failure: '+ Math.round(100-race_white[0])+"%"],
+       
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(A_race_other, {
@@ -179,12 +253,25 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Other: '+ Math.round(race_other[0])+"%"],
+        //   labels:['Other: '+ Math.round(race_other[0])+"%"],
+          labels:['Success: '+ Math.round(race_other[0])+"%",'Failure: '+ Math.round(100-race_other[0])+"%"],
+       
+          
       },
       options: {
         tooltips: {
          enabled: false
     },
+      legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(A_sex_lgbt, {
@@ -197,12 +284,23 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['LGBT: '+ Math.round(sex_lgbt[0])+"%"],
+        //   labels:['LGBT: '+ Math.round(sex_lgbt[0])+"%"],
+          labels:['Success: '+ Math.round(sex_lgbt[0])+"%",'Failure: '+ Math.round(100-sex_lgbt[0])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(A_sex_nonlgbt, {
@@ -215,12 +313,23 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Non LGBT: '+ Math.round(sex_nonlgbt[0])+"%"],
+        //   labels:['Non LGBT: '+ Math.round(sex_nonlgbt[0])+"%"],
+          labels:['Success: '+ Math.round(sex_nonlgbt[0])+"%",'Failure: '+ Math.round(100-sex_nonlgbt[0])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(A_average_success, {
@@ -233,19 +342,30 @@ function setChart(){
                   'rgb(255, 99, 132)',
               ],
           }],
+        //   labels:['Success: '+ Math.round(avg_success[0])+"%",'Failure: '+ Math.round(100-avg_success[0])+"%"],
           labels:['Success: '+ Math.round(avg_success[0])+"%",'Failure: '+ Math.round(100-avg_success[0])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(A_didi, {
       type: 'bar',
       data: {
         //   labels:['Gender DIDI: '+ Math.round(g_didi[0])+"%",'Race DIDI: '+ Math.round(r_didi[0])+"%",'Sex DIDI: '+ Math.round(s_didi[0])+"%"],
-        labels:['Gender', 'Race', 'Sex'],
+        labels:['Gender', 'Race', 'Sexual Preference'],
           datasets: [{
               data: [Math.round(g_didi[0]),Math.round(r_didi[0]),Math.round(s_didi[0])],
               backgroundColor: [
@@ -288,12 +408,23 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Male: '+ Math.round(gen_male[1])+"%"],
+        //   labels:['Male: '+ Math.round(gen_male[1])+"%"],
+          labels:['Success: '+ Math.round(gen_male[1])+"%",'Failure: '+ Math.round(100-gen_male[1])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(B_gen_female, {
@@ -306,12 +437,23 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Female: '+ Math.round(gen_female[1])+"%"],
+        //   labels:['Female: '+ Math.round(gen_female[1])+"%"],
+          labels:['Success: '+ Math.round(gen_female[1])+"%",'Failure: '+ Math.round(100-gen_female[1])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(B_gen_other, {
@@ -324,12 +466,23 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Other: '+ Math.round(gen_other[1])+"%"],
+        //   labels:['Other: '+ Math.round(gen_other[1])+"%"],
+          labels:['Success: '+ Math.round(gen_other[1])+"%",'Failure: '+ Math.round(100-gen_other[1])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(B_race_black, {
@@ -342,12 +495,23 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Black: '+ Math.round(race_black[1])+"%"],
+        //   labels:['Black: '+ Math.round(race_black[1])+"%"],
+          labels:['Success: '+ Math.round(race_black[1])+"%",'Failure: '+ Math.round(100-race_black[1])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(B_race_hisp, {
@@ -360,12 +524,25 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Hispanic: '+ Math.round(race_hisp[1])+"%"],
+        //   labels:['Hispanic: '+ Math.round(race_hisp[1])+"%"],
+          labels:['Success: '+ Math.round(race_hisp[1])+"%",'Failure: '+ Math.round(100-race_hisp[1])+"%"],
+          
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
+    
       }
   });
   var myChart = new Chart(B_race_white, {
@@ -378,12 +555,23 @@ function setChart(){
                 'rgb(201, 203, 207)',
               ],
           }],
-          labels:['White: '+ Math.round(race_white[1])+"%"],
+        //   labels:['White: '+ Math.round(race_white[1])+"%"],
+          labels:['Success: '+ Math.round(race_white[1])+"%",'Failure: '+ Math.round(100-race_white[1])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(B_race_other, {
@@ -396,12 +584,24 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Other: '+ Math.round(race_other[1])+"%"],
+        //   labels:['Other: '+ Math.round(race_other[1])+"%"],
+          labels:['Success: '+ Math.round(race_other[1])+"%",'Failure: '+ Math.round(100-race_other[1])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+
+      legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(B_sex_lgbt, {
@@ -414,12 +614,23 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['LGBT: '+ Math.round(sex_lgbt[1])+"%"],
+        //   labels:['LGBT: '+ Math.round(sex_lgbt[1])+"%"],
+          labels:['Success: '+ Math.round(sex_lgbt[1])+"%",'Failure: '+ Math.round(100-sex_lgbt[1])+"%"],
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(B_sex_nonlgbt, {
@@ -432,12 +643,24 @@ function setChart(){
                   'rgb(201, 203, 207)',
               ],
           }],
-          labels:['Non LGBT: '+ Math.round(sex_nonlgbt[1])+"%"],
+        //   labels:['Non LGBT: '+ Math.round(sex_nonlgbt[1])+"%"],
+          labels:['Success: '+ Math.round(sex_nonlgbt[1])+"%",'Failure: '+ Math.round(100-sex_nonlgbt[1])+"%"],
+          
       },
       options: {
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(B_average_success, {
@@ -456,13 +679,23 @@ function setChart(){
         tooltips: {
          enabled: false
     },
+    legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                boxWidth: 4,
+                defaultFontSize: 4
+
+
+            }
+        }
       }
   });
   var myChart = new Chart(B_didi, {
       type: 'bar',
       data: {
         //   labels:['Gender DIDI: '+ Math.round(g_didi[1])+"%",'Race DIDI: '+ Math.round(r_didi[1])+"%",'Sex DIDI: '+ Math.round(s_didi[1])+"%"],
-          labels:['Gender', 'Race', 'Sex'],
+          labels:['Gender', 'Race', 'Sexual Preference'],
           
           datasets: [{
               data: [Math.round(g_didi[1]),Math.round(r_didi[1]),Math.round(s_didi[1])],
